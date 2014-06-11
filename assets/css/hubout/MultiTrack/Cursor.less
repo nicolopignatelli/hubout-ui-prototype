@@ -1,0 +1,32 @@
+#hubout {
+  #multi-track {
+    #multi-track_cursor {
+      position: absolute;
+      left: -2px;
+      top: 0px;
+      width: 4px;
+      height: 100%;
+      cursor: url(../../cursors/openhand.cur) 4 4, ew-resize;
+
+      .dragging {
+        cursor: url(../../cursors/closehand.cur) 4 4, ew-resize;
+      }
+
+      .positionLoop(@counter) when (@counter > 0) {
+        .positionLoop((@counter - 1));
+        &.position@{counter} {
+          left: (1px * (@counter - 2));
+        }
+      }
+      .positionLoop(640);
+
+      #multi-track_cursor-bar {
+        background: #FFF;
+        position: absolute;
+        left: 1.5px;
+        width: 1px;
+        height: 100%;
+      }
+    }
+  }
+}
