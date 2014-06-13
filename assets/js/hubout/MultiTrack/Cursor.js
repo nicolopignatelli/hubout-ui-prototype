@@ -37,12 +37,12 @@ MultiTrack.Cursor = React.createClass({
       containment: "parent",
       scroll: false,
       stop: function() {
-        this._onStopDrag();
+        this._onStopDrag(node);
       }.bind(this)
     });
   },
 
-  _onStopDrag: function() {
+  _onStopDrag: function(node) {
     var position = parseInt(node.css('left'));
 
     node.removeAttr('style');
