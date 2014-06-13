@@ -7,7 +7,16 @@ var VideoSource = React.createClass({
   },
 
   componentDidMount: function() {
+    this.setupListeners();
     this.loadVideoPlayer();
+  },
+
+  setupListeners: function() {
+    EventDispatcher.addEventListener('MultiTrack.Cursor.moved', this._onCursorMoved);
+  },
+
+  _onCursorMoved: function(eventData) {
+    this.state.player.seekTo(eventData.time);
   },
 
   loadVideoPlayer: function() {

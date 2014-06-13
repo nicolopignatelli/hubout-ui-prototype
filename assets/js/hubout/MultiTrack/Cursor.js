@@ -3,7 +3,6 @@ var MultiTrack = MultiTrack || {};
 MultiTrack.Cursor = React.createClass({
   getInitialState: function() {
       return {
-        tracksSpaceWidth:    0,
         videoSourceDuration: 0,
         position:            0
       }
@@ -11,18 +10,12 @@ MultiTrack.Cursor = React.createClass({
 
   componentDidMount: function() {
     this.setupListeners();
+    this.setupDraggable();
   },
 
   setupListeners: function() {
-    EventDispatcher.addEventListener('MultiTrack.TracksSpace.Ready', this._onTracksSpaceReady);
     EventDispatcher.addEventListener('VideoSource.Ready', this._onVideoSourceReady);
     EventDispatcher.addEventListener('VideoSource.Tick', this._onVideoSourceTick);
-  },
-
-  _onTracksSpaceReady: function(eventData) {
-    this.setState({
-      tracksSpaceWidth: eventData.width
-    });
   },
 
   _onVideoSourceReady: function(eventData) {
@@ -36,12 +29,56 @@ MultiTrack.Cursor = React.createClass({
     this.moveToTime(currentTime);
   },
 
-  moveToTime: function(currentTime) {
-    var duration   = this.state.videoSourceDuration;
-    var spaceWidth = this.state.tracksSpaceWidth;
-    var position   = Math.round(currentTime * spaceWidth / duration);
+  setupDraggable: function() {
+    var node = $(this.getDOMNode());
 
+    $(node).draggable({
+      axis: "x" ,
+      containment: "parent",
+      scroll: false,
+      start: function() {
+      },
+      drag: function() {
+      },
+      stop: function() {
+        var position = parseInt(node.css('left'));
+
+        node.removeAttr('style');
+
+        this.moveToPosition(position);
+
+        EventDispatcher.dispatch('MultiTrack.Cursor.moved', {
+          'position': position,
+          'time':     this.positionToTime(position)
+        });
+      }.bind(this)
+    });
+  },
+
+  positionToTime: function(position) {
+    var duration   = this.state.videoSourceDuration;
+    var spaceWidth = this.props.containmentWidth;
+    var time       = position * duration / spaceWidth;
+
+    return time;
+  },
+
+  timeToPosition: function(time) {
+    var duration   = this.state.videoSourceDuration;
+    var spaceWidth = this.props.containmentWidth;
+    var position   = Math.round(time * spaceWidth / duration);
+
+    return position;
+  },
+
+  moveToPosition: function(position) {
     this.setState({'position': position});
+  },
+
+  moveToTime: function(currentTime) {
+    var position = this.timeToPosition(currentTime);
+
+    this.moveToPosition(position);
   },
 
   render: function() {

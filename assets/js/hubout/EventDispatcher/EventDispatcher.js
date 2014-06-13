@@ -27,8 +27,6 @@ var EventDispatcher = (function() {
       for(var i in _callbacks[eventType]) {
         _callbacks[eventType][i](event);
       }
-    },
-
-    log: function(){return _callbacks}
+    }
   };
 })();

@@ -6,11 +6,7 @@
       top: 0px;
       width: 4px;
       height: 100%;
-      cursor: url(../../cursors/openhand.cur) 4 4, ew-resize;
-
-      .dragging {
-        cursor: url(../../cursors/closehand.cur) 4 4, ew-resize;
-      }
+      cursor: ew-resize;
 
       .positionLoop(@counter) when (@counter > 0) {
         .positionLoop((@counter - 1));
