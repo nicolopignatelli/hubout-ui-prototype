@@ -12,10 +12,10 @@ var VideoSource = React.createClass({
   },
 
   setupListeners: function() {
-    EventDispatcher.addEventListener('MultiTrack.Cursor.moved', this._onCursorMoved);
+    EventDispatcher.addEventListener('MultiTrack.Cursor.drag.stop', this._onCursorDragStop);
   },
 
-  _onCursorMoved: function(eventData) {
+  _onCursorDragStop: function(eventData) {
     this.state.player.seekTo(eventData.time);
   },
 

@@ -36,22 +36,22 @@ MultiTrack.Cursor = React.createClass({
       axis: "x" ,
       containment: "parent",
       scroll: false,
-      start: function() {
-      },
-      drag: function() {
-      },
       stop: function() {
-        var position = parseInt(node.css('left'));
-
-        node.removeAttr('style');
-
-        this.moveToPosition(position);
-
-        EventDispatcher.dispatch('MultiTrack.Cursor.moved', {
-          'position': position,
-          'time':     this.positionToTime(position)
-        });
+        this._onStopDrag();
       }.bind(this)
+    });
+  },
+
+  _onStopDrag: function() {
+    var position = parseInt(node.css('left'));
+
+    node.removeAttr('style');
+
+    this.moveToPosition(position);
+
+    EventDispatcher.dispatch('MultiTrack.Cursor.drag.stop', {
+      'position': position,
+      'time':     this.positionToTime(position)
     });
   },
 
