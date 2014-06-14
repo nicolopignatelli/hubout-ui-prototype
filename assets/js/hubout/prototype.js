@@ -3,7 +3,7 @@
 var data = {
   videoSourceID: 'XZhPAgJXAxc',
   topics: [
-    {
+    { // Topic 1, location question with 3 replies
       id:        'q1',
       createdAt: Date.now(),
       author:    'username',
@@ -39,7 +39,7 @@ var data = {
         }
       ]
     },
-    {
+    { // Topic 2, question about song with 2 replies
       id:        'q2',
       createdAt: Date.now() - 100000,
       author:    'usernameq2',
@@ -61,28 +61,29 @@ var data = {
           id:           'q2r2',
           author:       'usernameq2r2',
           body:         "Seems like #JenniferLopez",
-          typedContent: '<iframe src="https://embed.spotify.com/?uri=spotify:track:4UXrcA0aP09rQh0eCwn5hx&theme=white&view=coverart" width="370" height="140" frameborder="0" allowtransparency="true"></iframe>',
+          typedContent: null,
           best:         false,
           likes:        0
         }
       ]
     },
-    {
+    { // Topic 3, advertising
       id:        'adv1',
       createdAt: Date.now() - 300000,
       author:    'advertiser1',
       type:      'advertising',
       time:      15,
       duration:  10,
-      content:   {
-        title:'Pasta Barilla',
-        body: '<div>some html</div>'
-      }
+      body:   {
+        title:   'Pasta Barilla',
+        content: '<div>some html</div>'
+      },
+      replies: []
     }
   ]
 };
 
 React.renderComponent(
-  <Application data={data} />,
+  <Application videoSourceID={data.videoSourceID} topics={data.topics} />,
   document.getElementById('application-container')
 );

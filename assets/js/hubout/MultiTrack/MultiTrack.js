@@ -1,34 +1,13 @@
 /** @jsx React.DOM */
 var MultiTrack = MultiTrack || {};
 MultiTrack.MultiTrack = React.createClass({
-  getInitialState: function() {
-    return {
-      width:  0,
-      height: 0
-    };
-  },
-
-  componentDidMount: function() {
-    this.updateSize();
-  },
-
-  updateSize: function() {
-    var node = $(this.getDOMNode());
-    var w    = parseInt(node.width());
-    var h    = parseInt(node.height()) - parseInt(node.children('#multi-track-footer').height());
-
-    this.setState({
-      width:  w,
-      height: h
-    });
-  },
-
   render: function() {
-    var cursorContainmentWidth = this.state.width;
+    var cursorContainmentWidth = this.props.width;
+    var tracksSpaceSize        = {width: 640, height: 290};
 
     return (
       <div id="multi-track">
-        <MultiTrack.TracksSpace />
+        <MultiTrack.TracksSpace size={tracksSpaceSize} regions={this.props.regions} />
         <MultiTrack.Cursor containmentWidth={cursorContainmentWidth} />
         <MultiTrack.VerticalZoomControl />
         <MultiTrack.HorizontalZoomControl />
