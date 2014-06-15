@@ -44,8 +44,8 @@ var data = {
       createdAt: Date.now() - 100000,
       author:    'usernameq2',
       type:      'music',
-      time:      15,
-      duration:  5,
+      time:      25,
+      duration:  10,
       body:      'I need to know the title of this song!',
       tags:      ['#JenniferLopez', '#Pitbull'],
       replies:   [
@@ -72,8 +72,8 @@ var data = {
       createdAt: Date.now() - 300000,
       author:    'advertiser1',
       type:      'advertising',
-      time:      15,
-      duration:  10,
+      time:      45,
+      duration:  15,
       body:   {
         title:   'Pasta Barilla',
         content: '<div>some html</div>'

@@ -12,6 +12,16 @@ MultiTrack.TracksSpace = React.createClass({
     node.height(this.props.size.height);
   },
 
+  getTracksHeight: function() {
+    var numberOftypes   = this.getRegionTypes().length;
+    var containerHeight = this.props.size.height;
+    var borders         = 1 * (numberOftypes - 1); //1px bottom border * track (except last one)
+    var availableHeight = containerHeight - borders;
+    var height          = availableHeight / numberOftypes;
+
+    return height;
+  },
+
   getRegionTypes: function() {
     var types = [];
 
@@ -41,13 +51,15 @@ MultiTrack.TracksSpace = React.createClass({
   },
 
   getTrackNodes: function() {
-    var trackNodes = [];
-    var types      = this.getRegionTypes();
+    var trackNodes      = [];
+    var types           = this.getRegionTypes();
+    var tracksSpaceSize = {width: this.props.size.width, height: this.getTracksHeight()};
+    var duration        = this.props.videoSourceDuration;
 
     for(i in types) {
       var type      = types[i];
       var regions   = this.getRegionsByType(type);
-      var node      = <MultiTrack.Track key={type} regions={regions} />;
+      var node      = <MultiTrack.Track videoSourceDuration={duration} key={type} size={tracksSpaceSize} regions={regions} />;
 
       trackNodes.push(node);
     }

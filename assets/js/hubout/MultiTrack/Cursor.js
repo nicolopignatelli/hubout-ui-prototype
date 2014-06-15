@@ -3,7 +3,6 @@ var MultiTrack = MultiTrack || {};
 MultiTrack.Cursor = React.createClass({
   getInitialState: function() {
       return {
-        videoSourceDuration: 0,
         position:            0
       }
   },
@@ -14,14 +13,7 @@ MultiTrack.Cursor = React.createClass({
   },
 
   setupListeners: function() {
-    EventDispatcher.addEventListener('VideoSource.Ready', this._onVideoSourceReady);
     EventDispatcher.addEventListener('VideoSource.Tick', this._onVideoSourceTick);
-  },
-
-  _onVideoSourceReady: function(eventData) {
-    this.setState({
-      videoSourceDuration: eventData.duration
-    });
   },
 
   _onVideoSourceTick: function(eventData) {
@@ -56,7 +48,7 @@ MultiTrack.Cursor = React.createClass({
   },
 
   positionToTime: function(position) {
-    var duration   = this.state.videoSourceDuration;
+    var duration   = this.props.videoSourceDuration;
     var spaceWidth = this.props.containmentWidth;
     var time       = position * duration / spaceWidth;
 
@@ -64,7 +56,7 @@ MultiTrack.Cursor = React.createClass({
   },
 
   timeToPosition: function(time) {
-    var duration   = this.state.videoSourceDuration;
+    var duration   = this.props.videoSourceDuration;
     var spaceWidth = this.props.containmentWidth;
     var position   = Math.round(time * spaceWidth / duration);
 

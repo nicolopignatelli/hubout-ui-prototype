@@ -1,0 +1,46 @@
+#hubout {
+  #multi-track {
+    .track {
+      .region {
+        position: absolute;
+        border-radius: 3px;
+        height: 100%;
+        border: 1px solid #ccc;
+        background: #aaa;
+
+        width: 10px;
+
+        .header {
+          height: 21px;
+          line-height: 21px;
+        }
+      }
+
+      .regionColor(@trackClass, @color) {
+        @dark: darken(@color, 20);
+
+        &.@{trackClass} {
+          .region {
+            border: 1px solid @dark;
+            background: @color;
+
+            .header {
+              background: @dark;
+            }
+          }
+        }
+      }
+
+      .regionColor(location, #FF9933);
+      .regionColor(music, #33CC33);
+
+      /* Advertising regions must be fully customizable */
+      &.advertising {
+        .region {
+          border: none;
+          background: transparent;
+        }
+      }
+    }
+  }
+}
