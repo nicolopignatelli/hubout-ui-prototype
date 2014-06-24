@@ -1,0 +1,62 @@
+#hubout {
+  #multi-track {
+    .track {
+      .region {
+        &.from50to84px {
+          .header {
+            &:before {
+              width: 100%;
+              margin: 0;
+            }
+
+            .title {
+              display: none;
+            }
+          }
+
+          .content {
+            padding: 4px 2px;
+
+            .thumb {
+              overflow: hidden;
+            }
+
+            .replies {
+              margin-top: -64px;
+              margin-bottom: 3px;
+              position: relative;
+              background: rgba(51, 51, 51, .5);
+              text-align: center;
+              color: #FFFFFF;
+              font-size: 8pt;
+              padding-bottom: 4px;
+
+              .count {
+                font-size: 16pt;
+                display: block;
+                margin-bottom: -7px;
+                font-weight: bold;
+              }
+            }
+
+            .timecode {
+              color: #FFFFFF;
+              font-size: 8pt;
+              font-weight: bold;
+              text-align: center;
+
+              span {
+                background: rgba(51, 51, 51, .8);
+                padding: 2px 4px;
+              }
+            }
+
+            .reply {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ var MultiTrack = MultiTrack || {};
 MultiTrack.Cursor = React.createClass({
   getInitialState: function() {
       return {
-        position:            0
+        position: 0
       }
   },
 

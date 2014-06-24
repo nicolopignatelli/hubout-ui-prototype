@@ -1,0 +1,80 @@
+#hubout {
+  #multi-track {
+    .track {
+      .region {
+        position: absolute;
+        border-radius: 3px;
+        height: 100%;
+        min-width: 20px;
+
+        /* Color defaults */
+        border: 1px solid #ccc;
+        background: #aaa;
+
+        .header {
+          height: 21px;
+          line-height: 21px;
+
+          &:before {
+            content: " ";
+            display: inline-block;
+            margin: 0 5px;
+            width: 11px;
+            height: 21px;
+            background-position: center;
+            background-repeat: no-repeat;
+          }
+
+          .title {
+            color: #FFFFFF;
+            font-size: 9pt;
+            font-weight: bold;
+            width: 68%;
+            height: 21px;
+            line-height: 21px;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+
+      /* Region types */
+      .regionType(@trackClass, @color, @iconUrl) {
+        @dark: darken(@color, 20);
+
+        &.@{trackClass} {
+          .region {
+            border: 1px solid @dark;
+            background-color: @color;
+
+            .header {
+              background: @dark;
+
+              &:before {
+                background-image: url(@iconUrl);
+              }
+            }
+          }
+        }
+      }
+
+      .regionType(location, #FF9933, '../../../../images/pin-white.png');
+      .regionType(music, #33CC33, '../../../../images/note-white.png');
+      /* End of region types */
+
+      /* Advertising regions must be fully customizable */
+      &.advertising {
+        .region {
+          border: none;
+          background: transparent;
+        }
+      }
+    }
+  }
+}
+
+@import "collapsed";
+@import "from50to84px";
+@import "from85to154px";
