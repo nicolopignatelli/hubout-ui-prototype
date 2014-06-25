@@ -29,7 +29,6 @@
             color: #FFFFFF;
             font-size: 9pt;
             font-weight: bold;
-            width: 68%;
             height: 21px;
             line-height: 21px;
             display: inline-block;
@@ -56,6 +55,24 @@
                 background-image: url(@iconUrl);
               }
             }
+
+            .content {
+              .replies {
+                border-color: @dark;
+              }
+
+              .reply {
+                a {
+                  border-color: @dark;
+                }
+              }
+
+              .tags {
+                .tag {
+                  background-color: @dark;
+                }
+              }
+            }
           }
         }
       }
@@ -75,6 +92,8 @@
   }
 }
 
-@import "collapsed";
-@import "from50to84px";
+@import "from220px";
+@import "from155to209px";
 @import "from85to154px";
+@import "from50to84px";
+@import "tiny";

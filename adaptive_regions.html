@@ -17,13 +17,18 @@
 
         <div class="row track location">
           <div class="col-lg-12">
-            <div class="region collapsed" style="width:20px" title="Dove è stata girata questa scena?">
+            <div class="region tiny" style="width:20px" title="Dove è stata girata questa scena?">
               <div class="header">
-                <span class="title"></span>
+                <span class="title">Dove è stata girata questa scena?</span>
               </div>
               <div class="content">
                 <div class="thumb">
                   <img src="assets/images/thumb-example.jpg" />
+                </div>
+                <div class="tags">
+                  <a class="tag" href="#">#Salento</a>
+                  <a class="tag" href="#">#Gallipoli</a>
+                  <a class="tag" href="#">#BaiaVerde</a>
                 </div>
                 <div class="replies">
                   <span class="count">7</span>
@@ -38,6 +43,7 @@
               </div>
             </div>
           </div>
+
         </div>
 
         <div class="row track music">
@@ -50,6 +56,11 @@
               <div class="content">
                 <div class="thumb">
                   <img src="assets/images/thumb-example.jpg" />
+                </div>
+                <div class="tags">
+                  <a class="tag" href="#">#Salento</a>
+                  <a class="tag" href="#">#Gallipoli</a>
+                  <a class="tag" href="#">#BaiaVerde</a>
                 </div>
                 <div class="replies">
                   <span class="count">7</span>
@@ -74,6 +85,11 @@
                 <div class="thumb">
                   <img src="assets/images/thumb-example.jpg" />
                 </div>
+                <div class="tags">
+                  <a class="tag" href="#">#Salento</a>
+                  <a class="tag" href="#">#Gallipoli</a>
+                  <a class="tag" href="#">#BaiaVerde</a>
+                </div>
                 <div class="replies">
                   <span class="count">7</span>
                   risposte
@@ -87,11 +103,61 @@
               </div>
             </div>
           </div>
+
           <div class="col-lg-3">
-            dsa
+            <div class="region from155to209px" style="width:155px" title="Dove è stata girata questa scena?">
+              <div class="header">
+                <span class="title">Dove è stata girata questa scena?</span>
+              </div>
+              <div class="content">
+                <div class="thumb">
+                  <img src="assets/images/thumb-example.jpg" />
+                </div>
+                <div class="tags">
+                  <a class="tag" href="#">#Salento</a>
+                  <a class="tag" href="#">#Gallipoli</a>
+                  <a class="tag" href="#">#BaiaVerde</a>
+                </div>
+                <div class="replies">
+                  <span class="count">7</span>
+                  risposte
+                </div>
+                <div class="timecode">
+                  <span>0:10</span>
+                </div>
+                <div class="reply">
+                  <a href="#">Rispondi</a>
+                </div>
+              </div>
+            </div>
           </div>
+
           <div class="col-lg-3">
-            dsa
+            <div class="region from210px" style="width:220px" title="Dove è stata girata questa scena?">
+              <div class="header">
+                <span class="title">Dove è stata girata questa scena?</span>
+              </div>
+              <div class="content">
+                <div class="thumb">
+                  <img src="assets/images/thumb-example.jpg" />
+                </div>
+                <div class="tags">
+                  <a class="tag" href="#">#Salento</a>
+                  <a class="tag" href="#">#Gallipoli</a>
+                  <a class="tag" href="#">#BaiaVerde</a>
+                </div>
+                <div class="replies">
+                  <span class="count">7</span>
+                  risposte
+                </div>
+                <div class="timecode">
+                  <span>0:10</span>
+                </div>
+                <div class="reply">
+                  <a href="#">Rispondi</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -100,5 +166,22 @@
     </div>
     <script src="assets/js/less/less.js"></script>
     <script src="assets/js/jquery/jquery-2.1.1.js"></script>
+    <script>
+      $('#multi-track').on('click', '.region.tiny', function(){
+        var region = $(this);
+
+        if(region.is(':not(.expanded)')) {
+          var actualWidth = region.width();
+          region.width(''); //remove explicit width
+          region.addClass('expanded');
+          region.data('width', actualWidth);
+        } else {
+          var actualWidth = region.data('width');
+          region.removeClass('expanded');
+          region.width(actualWidth);
+          region.removeData('width');
+        }
+      });
+    </script>
   </body>
 </html>
